@@ -1,0 +1,53 @@
+/* Starfield */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Meteor animation */
+.meteor {
+    position: absolute;
+    width: 3px;
+    height: 2px;
+    background: linear-gradient(180deg, white 0%, transparent 100%);
+    border-radius: 50%;
+    filter: blur(1px);
+    z-index: 50;
+    pointer-events: none;
+}
+
+.meteor::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, white 100%);
+    transform: translateX(0);
+}
