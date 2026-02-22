@@ -1,3 +1,8 @@
+@font-face {
+    font-family: retroFont;
+    src: url('/RETROTECH.ttf');
+}
+
 .projects-section {
     position: relative;
     min-height: 100vh;
@@ -6,71 +11,167 @@
     align-items: center;
     justify-content: center;
     padding: 4rem 2rem;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
+    z-index: 100;
 }
 
 .projects-content {
     max-width: 1200px;
     width: 100%;
-    transform-style: preserve-3d;
+}
+
+.scroll-indicator {
+    color: #4dd0e1;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+/* Browser window frames */
+.browser-window {
+    width: 100%;
+    max-width: 900px;
+    background: #000;
+    border: 2px solid #4dd0e1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 60px rgba(77, 208, 225, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.browser-header {
+    background: linear-gradient(180deg, #3a5f9e 0%, #2a4f8e 100%);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #1a3f7e;
+}
+
+.browser-buttons {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.browser-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+}
+
+.browser-button.close {
+    background: #ff5f56;
+}
+
+.browser-button.minimize {
+    background: #ffbd2e;
+}
+
+.browser-button.maximize {
+    background: #27c93f;
+}
+
+.browser-url {
+    flex: 1;
+    background: white;
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    color: #333;
+}
+
+.browser-content {
+    background: #fff;
+    min-height: 400px;
+    position: relative;
+}
+
+/* Project info card */
+.project-info {
+    background: rgba(10, 10, 20, 0.95);
+    border: 2px solid #4dd0e1;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 2rem;
+    max-width: 900px;
+    width: 100%;
+}
+
+.project-title {
+    color: #4dd0e1;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-transform: lowercase;
+}
+
+.project-description {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(77, 208, 225, 0.2);
+    border: 1px solid #4dd0e1;
+    color: #4dd0e1;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-transform: lowercase;
+}
+
+.project-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.project-link {
+    color: #ffb74d;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid #ffb74d;
+    border-radius: 4px;
+    transition: all 0.3s;
+    text-transform: lowercase;
+}
+
+.project-link:hover {
+    background: rgba(255, 183, 77, 0.2);
+}
+
+/* Section styling */
+.section-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 }
 
 .section-title {
     font-size: 3rem;
     color: #4dd0e1;
-    text-align: center;
+    text-transform: lowercase;
     margin-bottom: 1rem;
-    text-transform: lowercase;
-}
-
-.section-description {
     text-align: center;
-    color: #888;
-    font-size: 1.2rem;
-    margin-bottom: 4rem;
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    transform-style: preserve-3d;
-}
-
-.project-card {
-    background: rgba(77, 208, 225, 0.1);
-    border: 2px solid #4dd0e1;
-    border-radius: 8px;
-    padding: 2rem;
-    transition: all 0.3s;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-}
-
-.project-card:hover {
-    background: rgba(77, 208, 225, 0.2);
-    box-shadow: 0 10px 30px rgba(77, 208, 225, 0.3);
-}
-
-.project-card h3 {
-    color: #4dd0e1;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    text-transform: lowercase;
-}
-
-.project-card p {
-    color: #ccc;
-    line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
 }

@@ -1,80 +1,78 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import './Projects.css'
 
 function Projects() {
     const ref = useRef(null)
 
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start end", "center center"] // Changed end point
-    })
-
-    // Fixed rotation - stops at 0 degrees (flat)
-    const rotateX = useTransform(scrollYProgress, [0, 1], [90, 0])
-    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.8, 1])
-    const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1])
-
     return (
-        <div ref={ref} style={{ perspective: '2000px', minHeight: '100vh' }}>
-            <motion.section
-                className="projects-section"
-                style={{
-                    rotateX,
-                    opacity,
-                    scale,
-                    transformStyle: 'preserve-3d',
-                    transformOrigin: 'center top' // Rotate from top edge
-                }}
-            >
-                <div className="projects-content">
-                    <motion.h2
-                        className="section-title"
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        viewport={{ once: true }}
-                    >
-                        my work
-                    </motion.h2>
-
-                    <motion.p
-                        className="section-description"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        viewport={{ once: true }}
-                    >
-                        building at the intersection of physics, code, and culture
-                    </motion.p>
-
-                    <div className="project-grid">
-                        {[
-                            { title: 'te ao-strology', desc: 'māori lunar calendar calculator' },
-                            { title: 'astrophotography', desc: 'southern hemisphere sky documentation' },
-                            { title: 'physics simulations', desc: 'computational explorations' }
-                        ].map((project, index) => (
-                            <motion.div
-                                key={index}
-                                className="project-card"
-                                initial={{ opacity: 0, rotateY: -30 }}
-                                whileInView={{ opacity: 1, rotateY: 0 }}
-                                transition={{ duration: 0.6, delay: 0.7 + (index * 0.15) }}
-                                viewport={{ once: true }}
-                                whileHover={{
-                                    scale: 1.05,
-                                    rotateY: 5,
-                                    transition: { duration: 0.3 }
-                                }}
-                            >
-                                <h3>{project.title}</h3>
-                                <p>{project.desc}</p>
-                            </motion.div>
-                        ))}
+        <section ref={ref} className="projects-section">
+            <div className="section-content">
+                <h2 className="section-title">projects</h2>
+                <div className="browser-window">
+                    <div className="browser-header">
+                        <div className="browser-buttons">
+                            <div className="browser-button close"></div>
+                            <div className="browser-button minimize"></div>
+                            <div className="browser-button maximize"></div>
+                        </div>
+                        <div className="browser-url">https://hannahphys.github.io/aostrology/</div>
+                    </div>
+                    <div className="browser-content">
+                        <img src="/screenshots/teaostrology.png" alt="Te Ao-strology screenshot" style={{ width: '100%', display: 'block' }} />
                     </div>
                 </div>
-            </motion.section>
-        </div>
+
+                <div className="project-info">
+                    <h3 className="project-title">te ao-strology</h3>
+                    <p className="project-description">
+                        a māori lunar calendar calculator that determines your birth moon phase, seasonal
+                        markers, and māori month. combines traditional māori astronomical knowledge with
+                        modern web technology to connect people with te maramataka.
+                    </p>
+                    <div className="project-tags">
+                        <span className="tag">react</span>
+                        <span className="tag">vite</span>
+                        <span className="tag">astronomy</span>
+                        <span className="tag">māori knowledge</span>
+                    </div>
+                    <div className="project-links">
+                        <a href="#" className="project-link">visit site →</a>
+                        <a href="#" className="project-link">view code →</a>
+                    </div>
+                </div>
+
+                <div className="browser-window">
+                    <div className="browser-header">
+                        <div className="browser-buttons">
+                            <div className="browser-button close"></div>
+                            <div className="browser-button minimize"></div>
+                            <div className="browser-button maximize"></div>
+                        </div>
+                        <div className="browser-url">https://nz-native-plants.com</div>
+                    </div>
+                    <div className="browser-content">
+                        <img src="/screenshots/tahunanativeplants.png" alt="Native Plant Planner screenshot" style={{ width: '100%', display: 'block' }} />
+                    </div>
+                </div>
+
+                <div className="project-info">
+                    <h3 className="project-title">native plant planner</h3>
+                    <p className="project-description">
+                        documentation and planning tool for new zealand native plants organized by
+                        ecological zone, frost tolerance, and plant uses. helps people choose appropriate
+                        natives for their location.
+                    </p>
+                    <div className="project-tags">
+                        <span className="tag">ecology</span>
+                        <span className="tag">database</span>
+                        <span className="tag">nz flora</span>
+                    </div>
+                    <div className="project-links">
+                        <a href="#" className="project-link">visit site →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     )
 }
 
