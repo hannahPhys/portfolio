@@ -1,10 +1,12 @@
 import Projects from './sections/Projects'
 import Galaxy from './components/Galaxy'
+import Starfield from './components/Starfield'
 import './App.css'
 
 function App() {
   return (
     <>
+      {/*}
       <Galaxy
         mouseRepulsion={true}
         mouseInteraction={true}
@@ -18,7 +20,8 @@ function App() {
         autoCenterRepulsion={0}
         starSpeed={0.0}
         speed={1}
-      />
+      />*/}
+      <Starfield />
 
       <div className="hero-container">
         <div className="floating-icons"> {/* REMOVED inline style */}
