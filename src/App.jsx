@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import Starfield from './components/Starfield'
 import Projects from './sections/Projects'
 import './App.css'
@@ -7,21 +7,25 @@ import './App.css'
 function App() {
   const containerRef = useRef(null)
   const { scrollY } = useScroll()
+  const smoothScrollY = useSpring(scrollY, {
+    stiffness: 200,
+    damping: 20,
+    restDelta: 0.01
+  })
   // Add this transform to hide layers after scrolling past hero
-  const parallaxOpacity = useTransform(scrollY, [600, 800], [1, 0])
+  const parallaxOpacity = useTransform(smoothScrollY, [600, 800], [1, 0])
 
   // Parallax transforms - different speeds for each layer
-  const skyY = useTransform(scrollY, [0, 1000], [0, -200])
-  const auroraY = useTransform(scrollY, [0, 1000], [0, -500])
-  const mountainsY = useTransform(scrollY, [0, 1000], [0, -900])
+  const skyY = useTransform(smoothScrollY, [0, 1000], [0, -200])
+  const auroraY = useTransform(smoothScrollY, [0, 1000], [0, -500])
+  const mountainsY = useTransform(smoothScrollY, [0, 1000], [0, -900])
 
-  // Title fades and moves up
-  const titleOpacity = useTransform(scrollY, [0, 300], [1, 0])
-  //const titleY = useTransform(scrollY, [0, 100], [0, -100])
+  // Title fades 
+  const titleOpacity = useTransform(smoothScrollY, [0, 300], [1, 0])
 
   // Icons move up and shrink into header
-  const iconsY = useTransform(scrollY, [0, 400], [0, -window.innerHeight + 100])
-  const iconsScale = useTransform(scrollY, [300, 400], [1, 0.5])
+  const iconsY = useTransform(smoothScrollY, [0, 400], [0, -window.innerHeight + 100])
+  const iconsScale = useTransform(smoothScrollY, [300, 400], [1, 0.5])
 
   return (
     <>
@@ -30,23 +34,37 @@ function App() {
       {/* Parallax layers */}
       <motion.div
         className="parallax-layer sky-layer"
-        style={{ y: skyY, opacity: parallaxOpacity }}
+        style={{
+          y: skyY,
+          opacity: parallaxOpacity,
+          willChange: 'transform, opacity' // Performance hint
+        }}
       />
       <motion.div
         className="parallax-layer aurora-layer"
-        style={{ y: auroraY, opacity: parallaxOpacity }}
+        style={{
+          y: auroraY,
+          opacity: parallaxOpacity,
+          willChange: 'transform, opacity'
+        }}
       />
       <motion.div
         className="parallax-layer mountains-layer"
-        style={{ y: mountainsY, opacity: parallaxOpacity }}
+        style={{
+          y: mountainsY,
+          opacity: parallaxOpacity,
+          willChange: 'transform, opacity'
+        }}
       />
+
 
       <div className="hero-container" ref={containerRef}>
         {/* Title that fades out */}
         <motion.h1
           className="pixel-title"
           style={{
-            opacity: titleOpacity
+            opacity: titleOpacity,
+            willChange: 'opacity'
           }}
         >
           Hannah Auckram
@@ -119,7 +137,7 @@ function App() {
         </div>
       </motion.div>
 
-      <Projects />
+      <Projects  />
     </>
   )
 }

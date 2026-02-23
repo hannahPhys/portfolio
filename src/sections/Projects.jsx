@@ -1,5 +1,7 @@
 import { useRef } from 'react'
 import './Projects.css'
+import BrowserWindow from '../components/BrowserWindow'
+import ProjectCard from '../components/ProjectCard'
 
 function Projects() {
     const ref = useRef(null)
@@ -8,69 +10,40 @@ function Projects() {
         <section ref={ref} className="projects-section">
             <div className="section-content">
                 <h2 className="section-title">projects</h2>
-                <div className="browser-window">
-                    <div className="browser-header">
-                        <div className="browser-buttons">
-                            <div className="browser-button close"></div>
-                            <div className="browser-button minimize"></div>
-                            <div className="browser-button maximize"></div>
-                        </div>
-                        <div className="browser-url">https://hannahphys.github.io/aostrology/</div>
-                    </div>
-                    <div className="browser-content">
-                        <img src="/screenshots/teaostrology.png" alt="Te Ao-strology screenshot" style={{ width: '100%', display: 'block' }} />
-                    </div>
-                </div>
+                <BrowserWindow
+                    url={"https://hannahphys.github.io/aostrology/"}
+                    image={"/screenshots/teaostrology.png"}
+                    alt={"Te Ao-strology screenshot"}
+                />
+                <ProjectCard project={{
+                    title: "te ao-strology",
+                    description: "a māori lunar calendar calculator that determines your birth moon phase, seasonal markers, and māori month. combines traditional māori astronomical knowledge with modern web technology to connect people with te maramataka.",
+                    tags: ["react", "vite", "astronomy", "māori knowledge"]
+                }} />
 
-                <div className="project-info">
-                    <h3 className="project-title">te ao-strology</h3>
-                    <p className="project-description">
-                        a māori lunar calendar calculator that determines your birth moon phase, seasonal
-                        markers, and māori month. combines traditional māori astronomical knowledge with
-                        modern web technology to connect people with te maramataka.
-                    </p>
-                    <div className="project-tags">
-                        <span className="tag">react</span>
-                        <span className="tag">vite</span>
-                        <span className="tag">astronomy</span>
-                        <span className="tag">māori knowledge</span>
-                    </div>
-                    <div className="project-links">
-                        <a href="#" className="project-link">visit site →</a>
-                        <a href="#" className="project-link">view code →</a>
-                    </div>
-                </div>
+                <BrowserWindow
+                    url={"https://hannahphys.github.io/native-plant-planner/"}
+                    image={"/screenshots/tahunanativeplants.png"}
+                    alt={"Native Plant Planner screenshot"}
+                />
 
-                <div className="browser-window">
-                    <div className="browser-header">
-                        <div className="browser-buttons">
-                            <div className="browser-button close"></div>
-                            <div className="browser-button minimize"></div>
-                            <div className="browser-button maximize"></div>
-                        </div>
-                        <div className="browser-url">https://nz-native-plants.com</div>
-                    </div>
-                    <div className="browser-content">
-                        <img src="/screenshots/tahunanativeplants.png" alt="Native Plant Planner screenshot" style={{ width: '100%', display: 'block' }} />
-                    </div>
-                </div>
+                <ProjectCard project={{
+                    title: "native plant planner",
+                    description: "documentation and planning tool for new zealand native plants organized by ecological zone, frost tolerance, and plant uses. helps people choose appropriate natives specifically in the south island around tahuna built using data from Whakatipu Reforestation Trust.",
+                    tags: ["ecology", "database", "nz flora"]
+                }} />
 
-                <div className="project-info">
-                    <h3 className="project-title">native plant planner</h3>
-                    <p className="project-description">
-                        documentation and planning tool for new zealand native plants organized by
-                        ecological zone, frost tolerance, and plant uses. helps people choose appropriate
-                        natives for their location.
-                    </p>
-                    <div className="project-tags">
-                        <span className="tag">ecology</span>
-                        <span className="tag">database</span>
-                        <span className="tag">nz flora</span>
-                    </div>
-                    <div className="project-links">
-                        <a href="#" className="project-link">visit site →</a>
-                    </div>
-                </div>
+                <BrowserWindow
+                    url={"https://hannahphys.github.io/solar-system-simulation/"}
+                    image={"/screenshots/solarsystem.png"}
+                    alt={"solar sytem screenshot"}
+                />
+
+                <ProjectCard project={{
+                    title: "astrology helper",
+                    description: "this lil astrology helper is a web application designed to assist users in understanding their astrological signs and birth charts. being more able to see exactly how a birth chart comes from the positioning of the planets within the constellations and how the planets move over periods of time. could probably use a bit of an update in terms of design - todo",
+                    tags: ["astrology", "web app", "personalized"]
+                }} />
             </div>
         </section>
     )
