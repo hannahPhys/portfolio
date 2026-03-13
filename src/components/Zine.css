@@ -1,0 +1,266 @@
+.zine-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, #000 0%, #0a0a1a 100%);
+    scroll-snap-align: start;
+}
+
+.zine-title {
+    font-size: 3rem;
+    color: #4dd0e1;
+    text-transform: lowercase;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.zine-viewer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1400px;
+    width: 100%;
+}
+
+.pages-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.page-spread {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+/* Add to Zine.css */
+.page {
+    width: 420px;
+    height: 600px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.page-number {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: #4dd0e1;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+}
+
+.page img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Navigation arrows */
+.nav-arrow {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(77, 208, 225, 0.2);
+    border: 2px solid #4dd0e1;
+    color: #4dd0e1;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.nav-arrow:hover:not(:disabled) {
+    background: rgba(77, 208, 225, 0.4);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(77, 208, 225, 0.5);
+}
+
+.nav-arrow:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+/* Page indicator */
+.page-indicator {
+    margin-top: 2rem;
+    color: #4dd0e1;
+    font-size: 1.2rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* Mobile responsive */
+@media (max-width: 1024px) {
+    .page-spread {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .page {
+        width: 300px;
+        height: 450px;
+    }
+
+    .zine-viewer {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .nav-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .nav-arrow.left,
+    .nav-arrow.right {
+        order: 2;
+    }
+
+    .pages-container {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .zine-title {
+        font-size: 2rem;
+    }
+
+    .page {
+        width: 250px;
+        height: 375px;
+    }
+}
+
+/* Add cursor pointer and zoom hint to pages */
+.page {
+    width: 420px;
+    height: 600px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.page:hover {
+    transform: scale(1.02);
+}
+
+.page:hover .zoom-hint {
+    opacity: 1;
+}
+
+.zoom-hint {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: #4dd0e1;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.page-number {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: #4dd0e1;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* Fullscreen overlay */
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 2rem;
+    cursor: pointer;
+}
+
+.fullscreen-page {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    cursor: default;
+}
+
+.fullscreen-page img {
+    width: auto;
+    height: 90vh;
+    max-width: 90vw;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.close-fullscreen {
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    background: transparent;
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-fullscreen:hover {
+    transform: scale(1.1);
+    border: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .fullscreen-page img {
+        height: 80vh;
+    }
+
+    .close-fullscreen {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .fullscreen-page-number {
+        bottom: 1rem;
+    }
+}

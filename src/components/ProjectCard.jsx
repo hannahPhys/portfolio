@@ -16,8 +16,8 @@ function ProjectCard({ project }) {
                 ))}
             </div>
             <div className="project-links">
-                <a href="#" className="project-link">visit site →</a>
-                <a href="#" className="project-link">view code →</a>
+                <a href={project.url} className="project-link">visit site →</a>
+                <a href={project.codeUrl} className="project-link">view code →</a>
             </div>
         </StarBorder>
     )

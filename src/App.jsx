@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import Starfield from './components/Starfield'
 import Projects from './sections/Projects'
+import Zine from './components/Zine'
 import './App.css'
 
 function App() {
@@ -137,7 +138,8 @@ function App() {
         </div>
       </motion.div>
 
-      <Projects  />
+      <Projects />
+      <Zine />
     </>
   )
 }
