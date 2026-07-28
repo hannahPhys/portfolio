@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import Starfield from './components/Starfield'
 import Projects from './sections/Projects'
 import Zine from './components/Zine'
+import Photography from './sections/Photography'
 import './App.css'
 
 // Scroll distance (px) over which the background layers travel before the
@@ -137,6 +138,7 @@ function App() {
 
       <Projects />
       <Zine />
+      <Photography />
     </>
   )
 }

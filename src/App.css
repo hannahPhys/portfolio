@@ -13,9 +13,15 @@ html,
 body {
   width: 100%;
   min-height: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden here would silently break position: sticky
+     for every descendant (e.g. the Photography dive-through) - clip
+     achieves the same horizontal-overflow guard without that side effect. */
+  overflow-x: clip;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  /* mandatory would fight the long free-scroll range the Photography
+     dive-through needs (it has no snap point of its own), forcibly
+     snapping back toward Zine instead of letting the crossfade play out. */
+  scroll-snap-type: y proximity;
 }
 
 body {
