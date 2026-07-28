@@ -1,92 +1,95 @@
-import { useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import Starfield from './components/Starfield'
 import Projects from './sections/Projects'
 import Zine from './components/Zine'
 import './App.css'
 
+// Scroll distance (px) over which the background layers travel before the
+// hero fades out completely.
+const PARALLAX_TRAVEL_RANGE = [0, 1000]
+const PARALLAX_FADE_RANGE = [600, 800]
+
+// Background layers, back to front. `distance` is how far each layer travels
+// (px) over PARALLAX_TRAVEL_RANGE - lower distance reads as further away.
+const PARALLAX_LAYERS = [
+  { key: 'sky', className: 'sky-layer', distance: 200 },
+  { key: 'aurora', className: 'aurora-layer', distance: 500 },
+  { key: 'mountains', className: 'mountains-layer', distance: 900 },
+]
+
+const TITLE_FADE_RANGE = [0, 300]
+const ICONS_COLLAPSE_RANGE = [0, 400]
+const ICONS_SHRINK_RANGE = [300, 400]
+const HEADER_REVEAL_RANGE = [350, 450]
+
+// Tracks viewport height so the floating icons collapse to the correct
+// distance after a resize or orientation change, instead of freezing
+// whatever window.innerHeight happened to be on first render.
+function useViewportHeight() {
+  const [height, setHeight] = useState(() => window.innerHeight)
+
+  useEffect(() => {
+    const handleResize = () => setHeight(window.innerHeight)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  return height
+}
+
+function ParallaxLayer({ className, distance, scrollY, opacity }) {
+  const y = useTransform(scrollY, PARALLAX_TRAVEL_RANGE, [0, -distance])
+
+  return (
+    <motion.div
+      className={`parallax-layer ${className}`}
+      style={{ y, opacity, willChange: 'transform, opacity' }}
+    />
+  )
+}
+
 function App() {
-  const containerRef = useRef(null)
   const { scrollY } = useScroll()
   const smoothScrollY = useSpring(scrollY, {
     stiffness: 200,
     damping: 20,
     restDelta: 0.01
   })
-  // Add this transform to hide layers after scrolling past hero
-  const parallaxOpacity = useTransform(smoothScrollY, [600, 800], [1, 0])
 
-  // Parallax transforms - different speeds for each layer
-  const skyY = useTransform(smoothScrollY, [0, 1000], [0, -200])
-  const auroraY = useTransform(smoothScrollY, [0, 1000], [0, -500])
-  const mountainsY = useTransform(smoothScrollY, [0, 1000], [0, -900])
+  const parallaxOpacity = useTransform(smoothScrollY, PARALLAX_FADE_RANGE, [1, 0])
+  const titleOpacity = useTransform(smoothScrollY, TITLE_FADE_RANGE, [1, 0])
+  const headerOpacity = useTransform(smoothScrollY, HEADER_REVEAL_RANGE, [0, 1])
 
-  // Title fades 
-  const titleOpacity = useTransform(smoothScrollY, [0, 300], [1, 0])
-
-  // Icons move up and shrink into header
-  const iconsY = useTransform(smoothScrollY, [0, 400], [0, -window.innerHeight + 100])
-  const iconsScale = useTransform(smoothScrollY, [300, 400], [1, 0.5])
+  const viewportHeight = useViewportHeight()
+  const iconsY = useTransform(smoothScrollY, ICONS_COLLAPSE_RANGE, [0, -viewportHeight + 100])
+  const iconsScale = useTransform(smoothScrollY, ICONS_SHRINK_RANGE, [1, 0.5])
 
   return (
     <>
       <Starfield />
 
-      {/* Parallax layers */}
-      <motion.div
-        className="parallax-layer sky-layer"
-        style={{
-          y: skyY,
-          opacity: parallaxOpacity,
-          willChange: 'transform, opacity' // Performance hint
-        }}
-      />
-      <motion.div
-        className="parallax-layer aurora-layer"
-        style={{
-          y: auroraY,
-          opacity: parallaxOpacity,
-          willChange: 'transform, opacity'
-        }}
-      />
-      <motion.div
-        className="parallax-layer mountains-layer"
-        style={{
-          y: mountainsY,
-          opacity: parallaxOpacity,
-          willChange: 'transform, opacity'
-        }}
-      />
+      {PARALLAX_LAYERS.map(({ key, className, distance }) => (
+        <ParallaxLayer
+          key={key}
+          className={className}
+          distance={distance}
+          scrollY={smoothScrollY}
+          opacity={parallaxOpacity}
+        />
+      ))}
 
-
-      <div className="hero-container" ref={containerRef}>
-        {/* Title that fades out */}
+      <div className="hero-container">
         <motion.h1
           className="pixel-title"
-          style={{
-            opacity: titleOpacity,
-            willChange: 'opacity'
-          }}
+          style={{ opacity: titleOpacity, willChange: 'opacity' }}
         >
           Hannah Auckram
         </motion.h1>
 
-        {/* Start button 
-        <motion.input
-          type="image"
-          src="/icons/start.png"
-          className="start-button"
-          alt="start"
-          style={{ opacity: titleOpacity }}
-        />
-*/}
-        {/* Floating icons that become header */}
         <motion.div
           className="floating-icons"
-          style={{
-            y: iconsY,
-            scale: iconsScale
-          }}
+          style={{ y: iconsY, scale: iconsScale }}
         >
           <div className="float-icon" style={{ top: '10%', left: '8%' }}>
             <img src="/icons/space.png" alt="tech" />tech
@@ -118,13 +121,7 @@ function App() {
         </motion.div>
       </div>
 
-      {/* Sticky header that appears */}
-      <motion.div
-        className="sticky-header"
-        style={{
-          opacity: useTransform(scrollY, [350, 450], [0, 1])
-        }}
-      >
+      <motion.div className="sticky-header" style={{ opacity: headerOpacity }}>
         <div className="header-icons">
           <img src="/icons/space.png" alt="tech" />
           <img src="/icons/moon-15.png" alt="design" />
