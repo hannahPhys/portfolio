@@ -95,9 +95,9 @@ function App() {
           <div className="float-icon" style={{ top: '10%', left: '8%' }}>
             <img src="/icons/space.png" alt="tech" />tech
           </div>
-          <div className="float-icon no-border" style={{ top: '15%', left: '25%' }}>
+          <a className="float-icon no-border" href="#design" style={{ top: '15%', left: '25%' }}>
             <img src="/icons/moon-15.png" alt="design" />design
-          </div>
+          </a>
           <div className="float-icon" style={{ top: '20%', right: '30%' }}>
             <img src="/icons/india.png" alt="nature" />nature
           </div>
@@ -107,9 +107,9 @@ function App() {
           <div className="float-icon" style={{ top: '15%', right: '8%' }}>
             <img src="/icons/astro.png" alt="astro" />astro
           </div>
-          <div className="float-icon no-border" style={{ bottom: '35%', left: '15%' }}>
+          <a className="float-icon no-border" href="#websites" style={{ bottom: '35%', left: '15%' }}>
             <img src="/icons/explorer.png" alt="websites" />websites
-          </div>
+          </a>
           <div className="float-icon" style={{ bottom: '15%', left: '10%' }}>
             <img src="/icons/me.png" alt="me" />me
           </div>

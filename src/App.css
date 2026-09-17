@@ -127,6 +127,23 @@ body {
   z-index: 10;
 }
 
+/* The mountain layer's own upward scroll-parallax (see mountainsY in App.jsx)
+   moves it faster than the fixed-height box can compensate for, so its
+   bottom edge recedes above the viewport well before it's supposed to
+   fade out - revealing the page's background color instead of mountain.
+   This trailing block is solid black (matching the image's own silhouette)
+   and travels with the layer, so whatever gap opens up reads as "more
+   mountain" instead of a visible seam. */
+.mountains-layer::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 1000px;
+  background: #000;
+}
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -156,6 +173,16 @@ body {
   text-align: center;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transform-style: preserve-3d;
+  /* a few icons are <a> tags linking to their section - keep them looking
+     identical to the plain div-based icons, not like default link text.
+     :visited needs its own explicit rule since browsers privacy-sandbox
+     that pseudo-class and don't reliably resolve `inherit` through it. */
+  color: #fff;
+  text-decoration: none;
+}
+
+.float-icon:visited {
+  color: #fff;
 }
 
 .float-icon:hover {
@@ -289,6 +316,18 @@ body {
 @media (max-width: 768px) {
   .pixel-title {
     font-size: 2rem;
+  }
+
+  /* On a narrow/tall viewport, background-size:cover scales this landscape
+     image by height instead of width (the opposite of desktop's wide/short
+     viewport), so none of it gets cropped off the top - the ridge line ends
+     up compressed much further down the frame than on desktop. Desktop's
+     fixed 230px margin-top only matches its own crop behavior, and since
+     mobile's ridge position scales with viewport height (not a fixed pixel
+     amount), this needs a vh-based value to land at the same relative
+     height on screen across different phone sizes. */
+  .mountains-layer {
+    margin-top: 8.8vh;
   }
 
   .float-icon {

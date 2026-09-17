@@ -7,7 +7,7 @@ function Projects() {
     const ref = useRef(null)
 
     return (
-        <section ref={ref} className="projects-section">
+        <section ref={ref} className="projects-section" id="websites">
             <div className="section-content">
                 <h2 className="section-title">websites</h2>
                 <BrowserWindow

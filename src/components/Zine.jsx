@@ -30,7 +30,7 @@ function Zine() {
     }
 
     return (
-        <section className="zine-section">
+        <section className="zine-section" id="design">
             <h2 className="zine-title">design</h2>
 
             <div className="zine-viewer">
