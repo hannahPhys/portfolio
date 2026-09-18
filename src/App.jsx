@@ -4,6 +4,7 @@ import Starfield from './components/Starfield'
 import Projects from './sections/Projects'
 import Zine from './components/Zine'
 import Photography from './sections/Photography'
+import Contact from './sections/Contact'
 import './App.css'
 
 // Scroll distance (px) over which the background layers travel before the
@@ -116,9 +117,9 @@ function App() {
           <div className="float-icon" style={{ bottom: '30%', right: '10%' }}>
             <img src="/icons/houses.png" alt="travel" />travel
           </div>
-          <div className="float-icon no-border" style={{ bottom: '13%', right: '24%' }}>
+          <a className="float-icon no-border" href="#contact" style={{ bottom: '13%', right: '24%' }}>
             <img src="/icons/phone.png" alt="contact" />contact
-          </div>
+          </a>
         </motion.div>
       </div>
 
@@ -139,6 +140,7 @@ function App() {
       <Projects />
       <Zine />
       <Photography />
+      <Contact />
     </>
   )
 }
