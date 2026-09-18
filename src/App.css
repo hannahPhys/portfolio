@@ -86,12 +86,12 @@ body {
 }
 
 .sky-layer {
-  background-image: url('/sky.png');
+  background-image: url('/optimized/sky-desktop.webp');
   z-index: 1;
 }
 
 .aurora-layer {
-  background-image: url('/aurora.png');
+  background-image: url('/optimized/aurora-desktop.webp');
   z-index: 3;
   animation: aurora-shimmer 8s ease-in-out infinite;
   filter: brightness(1) saturate(1.2);
@@ -122,7 +122,7 @@ body {
 }
 
 .mountains-layer {
-  background-image: url('/mountains.png');
+  background-image: url('/optimized/mountains-desktop.webp');
   margin-top: 230px;
   z-index: 10;
 }
@@ -316,6 +316,21 @@ body {
 @media (max-width: 768px) {
   .pixel-title {
     font-size: 2rem;
+  }
+
+  /* Swap in the smaller mobile-resolution images - desktop's versions are
+     sized for wide/short viewports and are needlessly large to download
+     on mobile connections. */
+  .sky-layer {
+    background-image: url('/optimized/sky-mobile.webp');
+  }
+
+  .aurora-layer {
+    background-image: url('/optimized/aurora-mobile.webp');
+  }
+
+  .mountains-layer {
+    background-image: url('/optimized/mountains-mobile.webp');
   }
 
   /* On a narrow/tall viewport, background-size:cover scales this landscape

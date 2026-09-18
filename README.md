@@ -1,16 +1,50 @@
-# React + Vite
+# Hannah Auckram — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio site at [hannah.kiwi](https://hannah.kiwi), built with React 19 and Vite, featuring a scroll-driven parallax hero, a project showcase, a flipbook-style design section, a scroll dive-through photography gallery, and a contact section.
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** + **Vite 7**
+- **Framer Motion** for scroll-linked animation (parallax layers, dive-through photography effect)
+- Plain CSS (no framework) — each section/component has its own `.css` file colocated with it
 
-## React Compiler
+## Project structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+src/
+  App.jsx / App.css       Hero: starfield, parallax sky/aurora/mountains, floating icon nav
+  components/
+    Starfield.jsx/css     Twinkling stars + random meteors (Canvas-free, DOM-based)
+    Zine.jsx/css          "design" section — flipbook-style page viewer
+    BrowserWindow.jsx     Mock browser chrome used to preview project screenshots
+    ProjectCard.jsx       Project title/description/tags/links card
+  sections/
+    Projects.jsx/css      "websites" section — project showcase
+    Photography.jsx/css   "photography" section — scroll dive-through gallery
+    Contact.jsx/css       "contact" section — email/GitHub/Instagram
+public/
+  optimized/               WebP background images (desktop + mobile variants, see below)
+  icons/, zine/, photography/, screenshots/, videos/
+```
 
-## Expanding the ESLint configuration
+Each hero floating icon links to its matching section by anchor (`#design`, `#websites`, `#contact`) where a section has an unambiguous match; icons without an obvious destination are left as plain decoration.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Development
+
+```bash
+npm install
+npm run dev       # start dev server
+npm run build     # production build to dist/
+npm run preview   # preview the production build locally
+npm run lint      # eslint
+```
+
+## Deployment
+
+Deployed on **Vercel**, linked to the `hannahauckram` account, deploy-on-push is not connected (deploys are manual via CLI):
+
+```bash
+vercel --prod
+```
+
+The custom domain `hannah.kiwi` (and `www.hannah.kiwi`) is configured in the Vercel project with DNS A records pointing at Vercel's edge network.
