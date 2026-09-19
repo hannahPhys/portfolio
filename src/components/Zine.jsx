@@ -7,7 +7,7 @@ function Zine() {
     const [fullscreenPage, setFullscreenPage] = useState(null)
     const totalPages = 12
 
-    const pages = Array.from({ length: totalPages }, (_, i) => `/zine/${i + 1}.jpg`)
+    const pages = Array.from({ length: totalPages }, (_, i) => `/zine/${i + 1}.webp`)
 
     const handleNext = () => {
         if (currentPage + 2 < totalPages) {

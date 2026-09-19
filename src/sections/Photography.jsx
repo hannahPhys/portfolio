@@ -5,14 +5,14 @@ import './Photography.css'
 // Add a `gradient` fallback (e.g. 'linear-gradient(135deg, #2b2f77, #5c6bc0)')
 // on any entry to placeholder it if `src` is ever removed.
 const PHOTOS = [
-  { id: 1, src: '/photography/20240812-IMG_1497.jpg', caption: 'aurora chasing' },
-  { id: 2, src: '/photography/IMG_0017-Enhanced-NR.jpg', caption: 'building storm' },
-  { id: 3, src: '/photography/IMG_0042-Enhanced-NR.jpg', caption: 'cloud, gold hour' },
-  { id: 4, src: '/photography/IMG_0099-Enhanced-NR-2.jpg', caption: 'storm glow' },
-  { id: 5, src: '/photography/IMG_0150-Edit.jpg', caption: 'currawong & moon' },
-  { id: 6, src: '/photography/20251113-IMG_2770.jpg', caption: 'alpine dawn' },
-  { id: 7, src: '/photography/IMG_1635-Edit-3.jpg', caption: 'under the stars' },
-  { id: 8, src: '/photography/IMG_2635.jpg', caption: 'night vessel' },
+  { id: 1, src: '/photography/20240812-IMG_1497.webp', caption: 'aurora chasing' },
+  { id: 2, src: '/photography/IMG_0017-Enhanced-NR.webp', caption: 'building storm' },
+  { id: 3, src: '/photography/IMG_0042-Enhanced-NR.webp', caption: 'cloud, gold hour' },
+  { id: 4, src: '/photography/IMG_0099-Enhanced-NR-2.webp', caption: 'storm glow' },
+  { id: 5, src: '/photography/IMG_0150-Edit.webp', caption: 'currawong & moon' },
+  { id: 6, src: '/photography/20251113-IMG_2770.webp', caption: 'alpine dawn' },
+  { id: 7, src: '/photography/IMG_1635-Edit-3.webp', caption: 'under the stars' },
+  { id: 8, src: '/photography/IMG_2635.webp', caption: 'night vessel' },
 ]
 
 // Wheel/touch distance (px) dedicated to each photo's dive-through transition

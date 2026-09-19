@@ -12,7 +12,7 @@ function Projects() {
                 <h2 className="section-title">websites</h2>
                 <BrowserWindow
                     url={"https://hannahphys.github.io/aostrology/"}
-                    image={"/screenshots/teaostrology.png"}
+                    image={"/screenshots/teaostrology.webp"}
                     alt={"Te Ao-strology screenshot"}
                 />
                 <ProjectCard project={{
@@ -25,7 +25,7 @@ function Projects() {
 
                 <BrowserWindow
                     url={"https://hannahphys.github.io/native-plant-planner/"}
-                    image={"/screenshots/tahunanativeplants.png"}
+                    image={"/screenshots/tahunanativeplants.webp"}
                     alt={"Native Plant Planner screenshot"}
                 />
 
@@ -39,7 +39,7 @@ function Projects() {
 
                 <BrowserWindow
                     url={"https://hannahphys.github.io/solar-system-simulation/"}
-                    image={"/screenshots/solarsystem.png"}
+                    image={"/screenshots/solarsystem.webp"}
                     alt={"solar sytem screenshot"}
                 />
 
