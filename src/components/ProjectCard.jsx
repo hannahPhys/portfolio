@@ -15,10 +15,12 @@ function ProjectCard({ project }) {
                     <span key={tag} className="tag">{tag}</span>
                 ))}
             </div>
-            <div className="project-links">
-                <a href={project.url} className="project-link">visit site →</a>
-                <a href={project.codeUrl} className="project-link">view code →</a>
-            </div>
+            {(project.url || project.codeUrl) && (
+                <div className="project-links">
+                    {project.url && <a href={project.url} className="project-link">visit site →</a>}
+                    {project.codeUrl && <a href={project.codeUrl} className="project-link">view code →</a>}
+                </div>
+            )}
         </StarBorder>
     )
 }

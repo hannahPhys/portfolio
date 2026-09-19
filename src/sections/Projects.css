@@ -101,6 +101,16 @@
     position: relative;
 }
 
+.browser-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #0a0a1a, #1a0a2e);
+    color: #4dd0e1;
+    text-transform: lowercase;
+}
+
 /* Project info card */
 .project-info {
     padding: 2rem;

@@ -50,6 +50,23 @@ function Projects() {
                     url: "https://hannahphys.github.io/solar-system-simulation/",
                     codeUrl: "https://github.com/hannahphys/solar-system-simulation"
                 }} />
+
+                <BrowserWindow
+                    url={"https://temporary-fast-glacier-yjny76h.vercel.app/"}
+                    video={{
+                        desktop: "/videos/stargazing-ops-desktop.mp4",
+                        mobile: "/videos/stargazing-ops-mobile.mp4",
+                        poster: "/videos/stargazing-ops-poster.jpg",
+                    }}
+                    alt={"stargazing tour ops screen recording"}
+                />
+
+                <ProjectCard project={{
+                    title: "stargazing tour ops",
+                    description: "a mobile-first PWA that runs a stargazing tour business's nightly operations. guides see tonight's shift, moon phase and upcoming roster, and start and end shifts from their phone. admins make the weather-dependent go/no-go call, manage the roster and get a weekly payroll summary. push notifications go out the moment a decision changes, and shifts stay readable offline.",
+                    tags: ["react", "vite", "firebase", "pwa"],
+                    url: "https://temporary-fast-glacier-yjny76h.vercel.app/"
+                }} />
             </div>
         </section>
     )
