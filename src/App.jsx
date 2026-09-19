@@ -25,6 +25,18 @@ const ICONS_COLLAPSE_RANGE = [0, 400]
 const ICONS_SHRINK_RANGE = [300, 400]
 const HEADER_REVEAL_RANGE = [350, 450]
 
+const NAV_ITEMS = [
+  { icon: 'space.png', label: 'tech' },
+  { icon: 'moon-15.png', label: 'design' },
+  { icon: 'india.png', label: 'nature' },
+  { icon: 'finder.png', label: 'finder' },
+  { icon: 'astro.png', label: 'astro' },
+  { icon: 'explorer.png', label: 'websites' },
+  { icon: 'me.png', label: 'me' },
+  { icon: 'houses.png', label: 'travel' },
+  { icon: 'phone.png', label: 'contact' },
+]
+
 // Tracks viewport height so the floating icons collapse to the correct
 // distance after a resize or orientation change, instead of freezing
 // whatever window.innerHeight happened to be on first render.
@@ -46,7 +58,7 @@ function ParallaxLayer({ className, distance, scrollY, opacity }) {
   return (
     <motion.div
       className={`parallax-layer ${className}`}
-      style={{ y, opacity, willChange: 'transform, opacity' }}
+      style={{ y, '--layer-fade': opacity, willChange: 'transform, opacity' }}
     />
   )
 }
@@ -125,15 +137,12 @@ function App() {
 
       <motion.div className="sticky-header" style={{ opacity: headerOpacity }}>
         <div className="header-icons">
-          <img src="/icons/space.png" alt="tech" />
-          <img src="/icons/moon-15.png" alt="design" />
-          <img src="/icons/india.png" alt="nature" />
-          <img src="/icons/finder.png" alt="finder" />
-          <img src="/icons/astro.png" alt="astro" />
-          <img src="/icons/explorer.png" alt="websites" />
-          <img src="/icons/me.png" alt="me" />
-          <img src="/icons/houses.png" alt="travel" />
-          <img src="/icons/phone.png" alt="contact" />
+          {NAV_ITEMS.map(({ icon, label }) => (
+            <div key={label} className="header-icon">
+              <img src={`/icons/${icon}`} alt={label} />
+              <span className="header-tooltip">{label}</span>
+            </div>
+          ))}
         </div>
       </motion.div>
 

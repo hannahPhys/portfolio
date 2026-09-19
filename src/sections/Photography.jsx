@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
 import './Photography.css'
 
 // Add a `gradient` fallback (e.g. 'linear-gradient(135deg, #2b2f77, #5c6bc0)')
@@ -15,8 +15,8 @@ const PHOTOS = [
   { id: 8, src: '/photography/IMG_2635.jpg', caption: 'night vessel' },
 ]
 
-// Scroll distance (vh) dedicated to each photo's dive-through transition
-const VH_PER_PHOTO = 80
+// Wheel/touch distance (px) dedicated to each photo's dive-through transition
+const DISTANCE_PER_PHOTO = 500
 
 // Piecewise-linear interpolation, clamped to the first/last value outside
 // the given range. Used via useTransform's functional form rather than its
@@ -85,43 +85,88 @@ function DepthDot({ index, total, progress }) {
 }
 
 function Photography() {
-  const sectionRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  })
+  const stackRef = useRef(null)
+  const progress = useMotionValue(0)
+  const totalDistance = PHOTOS.length * DISTANCE_PER_PHOTO
 
-  const hintOpacity = useTransform(scrollYProgress, [0, 0.04], [1, 0])
+  // Only intercept scroll/touch input that starts on the image stack itself -
+  // everywhere else in the section (title, dots, hint, background) scrolls
+  // the page like normal. At either end of the dive-through we also let the
+  // input fall through, so continuing to scroll in that direction moves on
+  // to the next/previous page section instead of getting stuck.
+  useEffect(() => {
+    const el = stackRef.current
+    if (!el) return undefined
+
+    const advance = (delta) => {
+      const current = progress.get()
+      const goingDeeper = delta > 0
+      if ((goingDeeper && current >= 1) || (!goingDeeper && current <= 0)) {
+        return false
+      }
+      progress.set(Math.min(1, Math.max(0, current + delta / totalDistance)))
+      return true
+    }
+
+    const onWheel = (e) => {
+      if (advance(e.deltaY)) e.preventDefault()
+    }
+
+    let lastTouchY = null
+    const onTouchStart = (e) => {
+      lastTouchY = e.touches[0].clientY
+    }
+    const onTouchMove = (e) => {
+      if (lastTouchY === null) return
+      const currentY = e.touches[0].clientY
+      const delta = lastTouchY - currentY
+      lastTouchY = currentY
+      if (advance(delta)) e.preventDefault()
+    }
+    const onTouchEnd = () => {
+      lastTouchY = null
+    }
+
+    el.addEventListener('wheel', onWheel, { passive: false })
+    el.addEventListener('touchstart', onTouchStart, { passive: true })
+    el.addEventListener('touchmove', onTouchMove, { passive: false })
+    el.addEventListener('touchend', onTouchEnd, { passive: true })
+
+    return () => {
+      el.removeEventListener('wheel', onWheel)
+      el.removeEventListener('touchstart', onTouchStart)
+      el.removeEventListener('touchmove', onTouchMove)
+      el.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [progress, totalDistance])
+
+  const hintOpacity = useTransform(progress, [0, 0.04], [1, 0])
 
   return (
-    <section
-      ref={sectionRef}
-      className="photography-section"
-      style={{ height: `${PHOTOS.length * VH_PER_PHOTO}vh` }}
-    >
+    <section className="photography-section">
       <div className="photography-sticky">
         <h2 className="photography-title">photography</h2>
 
-        <div className="depth-stack">
+        <div className="depth-stack" ref={stackRef}>
           {PHOTOS.map((photo, i) => (
             <DepthFrame
               key={photo.id}
               photo={photo}
               index={i}
               total={PHOTOS.length}
-              progress={scrollYProgress}
+              progress={progress}
             />
           ))}
         </div>
 
         <div className="depth-dots">
           {PHOTOS.map((photo, i) => (
-            <DepthDot key={photo.id} index={i} total={PHOTOS.length} progress={scrollYProgress} />
+            <DepthDot key={photo.id} index={i} total={PHOTOS.length} progress={progress} />
           ))}
         </div>
 
         <motion.p className="depth-hint" style={{ opacity: hintOpacity }}>
-          scroll to go deeper
+          hover the photo and scroll to go deeper
         </motion.p>
       </div>
     </section>

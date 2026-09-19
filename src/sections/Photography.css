@@ -1,12 +1,13 @@
 .photography-section {
     position: relative;
+    height: 100vh;
     background: linear-gradient(180deg, #0a0a1a 0%, #05050d 100%);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .photography-sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
