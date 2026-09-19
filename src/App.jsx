@@ -4,6 +4,7 @@ import Starfield from './components/Starfield'
 import Projects from './sections/Projects'
 import Zine from './components/Zine'
 import Photography from './sections/Photography'
+import Carousels from './sections/Carousels'
 import Contact from './sections/Contact'
 import './App.css'
 
@@ -117,9 +118,9 @@ function App() {
           <div className="float-icon" style={{ top: '12%', right: '22%' }}>
             <img src="/icons/finder.png" alt="finder" />finder
           </div>
-          <div className="float-icon" style={{ top: '15%', right: '8%' }}>
+          <a className="float-icon" href="#carousels" style={{ top: '15%', right: '8%' }}>
             <img src="/icons/astro.png" alt="astro" />astro
-          </div>
+          </a>
           <a className="float-icon no-border" href="#websites" style={{ bottom: '35%', left: '15%' }}>
             <img src="/icons/explorer.png" alt="websites" />websites
           </a>
@@ -149,6 +150,7 @@ function App() {
       <Projects />
       <Zine />
       <Photography />
+      <Carousels />
       <Contact />
     </>
   )
