@@ -10,23 +10,32 @@
     scroll-snap-stop: always;
 }
 
-.carousels-handle {
-    color: #ccc;
-    text-decoration: none;
-    margin-top: -1.5rem;
+.carousels-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 1100px;
 }
 
-.carousels-handle:hover {
-    color: #4dd0e1;
-}
-
-/* Instagram-profile-style grid: tight gaps, portrait tiles, one row. */
+/* Instagram-profile-style row of four tiles. */
 .carousels-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 4px;
+    gap: 1.25rem;
+    align-items: start;
     width: 100%;
-    max-width: 1100px;
+}
+
+/* Stories sit centred under the posts, each the same width as a post tile. */
+.carousels-grid.stories-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stories-row .carousel-card {
+    width: calc((100% - 3 * 1.25rem) / 4);
 }
 
 .carousel-card {
@@ -52,7 +61,8 @@
     justify-content: center;
 }
 
-.carousel-slide img {
+.carousel-slide img,
+.carousel-slide video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -150,5 +160,9 @@
     /* Four across is too small to read or tap on a phone. */
     .carousels-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stories-row .carousel-card {
+        width: calc((100% - 1.25rem) / 2);
     }
 }
