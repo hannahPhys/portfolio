@@ -106,18 +106,18 @@ function App() {
           className="floating-icons"
           style={{ y: iconsY, scale: iconsScale }}
         >
-          <div className="float-icon" style={{ top: '10%', left: '8%' }}>
+          <a className="float-icon" href="#websites" style={{ top: '10%', left: '8%' }}>
             <img src="/icons/space.png" alt="tech" />tech
-          </div>
+          </a>
           <a className="float-icon no-border" href="#design" style={{ top: '15%', left: '25%' }}>
             <img src="/icons/moon-15.png" alt="design" />design
           </a>
           <div className="float-icon" style={{ top: '20%', right: '30%' }}>
             <img src="/icons/india.png" alt="nature" />nature
           </div>
-          <div className="float-icon" style={{ top: '12%', right: '22%' }}>
+          <a className="float-icon" href="#graph" style={{ top: '12%', right: '22%' }}>
             <img src="/icons/finder.png" alt="finder" />finder
-          </div>
+          </a>
           <a className="float-icon" href="#carousels" style={{ top: '15%', right: '8%' }}>
             <img src="/icons/astro.png" alt="astro" />astro
           </a>
@@ -127,9 +127,15 @@ function App() {
           <div className="float-icon" style={{ bottom: '15%', left: '10%' }}>
             <img src="/icons/me.png" alt="me" />me
           </div>
-          <div className="float-icon" style={{ bottom: '30%', right: '10%' }}>
+          <a
+            className="float-icon"
+            href="https://hannahauckram.my.canva.site/"
+            target="_blank"
+            rel="noreferrer"
+            style={{ bottom: '30%', right: '10%' }}
+          >
             <img src="/icons/houses.png" alt="travel" />travel
-          </div>
+          </a>
           <a className="float-icon no-border" href="#contact" style={{ bottom: '13%', right: '24%' }}>
             <img src="/icons/phone.png" alt="contact" />contact
           </a>

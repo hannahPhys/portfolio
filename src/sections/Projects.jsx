@@ -67,6 +67,21 @@ function Projects() {
                     tags: ["react", "vite", "firebase", "pwa"],
                     url: "https://temporary-fast-glacier-yjny76h.vercel.app/"
                 }} />
+
+                <BrowserWindow
+                    id="graph"
+                    url={"https://my-3d-graph.vercel.app/"}
+                    image={"/screenshots/3d-graph.webp"}
+                    alt={"3d knowledge graph screenshot"}
+                />
+
+                <ProjectCard project={{
+                    title: "3d knowledge graph",
+                    description: "an interactive 3d mindmap of my personal obsidian notes - over 500 of them across quantum physics, spacetime, black hole theories and metaphysics. notes are connected wikilink-style so you can travel from idea to idea, or ask a question in plain english and a claude-powered assistant answers from the most relevant notes.",
+                    tags: ["react", "3d graph", "obsidian", "claude api"],
+                    url: "https://my-3d-graph.vercel.app/",
+                    codeUrl: "https://github.com/hannahPhys/my-3d-graph"
+                }} />
             </div>
         </section>
     )

@@ -39,6 +39,7 @@
 
 /* Browser window frames */
 .browser-window {
+    scroll-margin-top: 4rem;
     width: 100%;
     max-width: 900px;
     background: #000;

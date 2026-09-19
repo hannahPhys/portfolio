@@ -1,3 +1,4 @@
+import LazyVideo from '../components/LazyVideo'
 import './Contact.css'
 
 const CONTACT_LINKS = [
@@ -28,13 +29,11 @@ function Contact() {
                     ))}
                 </div>
 
-                <video
+                <LazyVideo
                     className="contact-photo"
-                    src="/videos/starfield.webm"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
+                    src="/videos/starfield.mp4"
+                    poster="/videos/starfield-poster.jpg"
+                    alt="me under the stars"
                 />
             </div>
         </section>
