@@ -10,6 +10,22 @@
     scroll-snap-stop: always;
 }
 
+.carousels-link {
+    margin-top: -1.5rem;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid #ffb74d;
+    border-radius: 4px;
+    color: #ffb74d;
+    text-decoration: none;
+    text-transform: lowercase;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.carousels-link:hover {
+    background: rgba(255, 183, 77, 0.2);
+}
+
 .carousels-stack {
     display: flex;
     flex-direction: column;

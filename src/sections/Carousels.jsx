@@ -182,6 +182,14 @@ function Carousels() {
     <section className="carousels-section" id="carousels">
       <div className="section-content">
         <h2 className="section-title">astro</h2>
+        <a
+          className="carousels-link"
+          href="https://slow-light-phi.vercel.app/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          go here for my astrophotography website →
+        </a>
         <div className="carousels-stack">
           <div className="carousels-grid">
             {CAROUSELS.map((carousel) => (
